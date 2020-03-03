@@ -24,6 +24,23 @@ export const customFieldValuesToBlockValues = (values) => values.map((value) => 
   return mappedValue;
 });
 
+const mapBlockStyles = (styles) => {
+  if (!styles) {
+    return backwardCompatibleBlockStyles;
+  }
+  const mappedStyles = {
+    fullWidth: styles.full_width === '1',
+  };
+  // Detect if styles inherit from theme by checking if bold param is present
+  if (!has(styles, 'bold')) {
+    mappedStyles.inheritFromTheme = true;
+    return mappedStyles;
+  }
+  mappedStyles.inheritFromTheme = false;
+  mappedStyles.bold = styles.bold === '1';
+  return mappedStyles;
+};
+
 const mapCustomField = (item, customFields, mappedCommonProperties) => {
   const customField = customFields.find((cf) => cf.id === parseInt(item.id, 10));
   if (!customField) return null;
@@ -66,7 +83,7 @@ const mapCustomField = (item, customFields, mappedCommonProperties) => {
   }
 
   if (customField.type === 'text' || customField.type === 'textarea') {
-    mapped.attributes.styles = backwardCompatibleBlockStyles;
+    mapped.attributes.styles = mapBlockStyles(item.styles);
   }
   return mapped;
 };
@@ -162,7 +179,7 @@ export const formBodyToBlocksFactory = (colorDefinitions, customFields = []) => 
             name: 'mailpoet-form/email-input',
             attributes: {
               ...mapped.attributes,
-              styles: backwardCompatibleBlockStyles,
+              styles: mapBlockStyles(item.styles),
             },
           };
         case 'first_name':
@@ -171,7 +188,7 @@ export const formBodyToBlocksFactory = (colorDefinitions, customFields = []) => 
             name: 'mailpoet-form/first-name-input',
             attributes: {
               ...mapped.attributes,
-              styles: backwardCompatibleBlockStyles,
+              styles: mapBlockStyles(item.styles),
             },
           };
         case 'last_name':
@@ -180,7 +197,7 @@ export const formBodyToBlocksFactory = (colorDefinitions, customFields = []) => 
             name: 'mailpoet-form/last-name-input',
             attributes: {
               ...mapped.attributes,
-              styles: backwardCompatibleBlockStyles,
+              styles: mapBlockStyles(item.styles),
             },
           };
         case 'segments':
