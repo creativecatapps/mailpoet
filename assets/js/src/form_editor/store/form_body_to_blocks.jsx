@@ -160,19 +160,28 @@ export const formBodyToBlocksFactory = (colorDefinitions, customFields = []) => 
           return {
             ...mapped,
             name: 'mailpoet-form/email-input',
-            styles: backwardCompatibleBlockStyles,
+            attributes: {
+              ...mapped.attributes,
+              styles: backwardCompatibleBlockStyles,
+            },
           };
         case 'first_name':
           return {
             ...mapped,
             name: 'mailpoet-form/first-name-input',
-            styles: backwardCompatibleBlockStyles,
+            attributes: {
+              ...mapped.attributes,
+              styles: backwardCompatibleBlockStyles,
+            },
           };
         case 'last_name':
           return {
             ...mapped,
             name: 'mailpoet-form/last-name-input',
-            styles: backwardCompatibleBlockStyles,
+            attributes: {
+              ...mapped.attributes,
+              styles: backwardCompatibleBlockStyles,
+            },
           };
         case 'segments':
           if (
