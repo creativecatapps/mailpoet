@@ -131,6 +131,7 @@ describe('Form Body To Blocks', () => {
     const customTextStyles = {
       full_width: '0',
       bold: '1',
+      background_color: '#ffffff',
     };
 
     const map = formBodyToBlocksFactory(colorDefinitions, [customFieldText]);
@@ -146,6 +147,7 @@ describe('Form Body To Blocks', () => {
       fullWidth: false,
       inheritFromTheme: false,
       bold: true,
+      backgroundColor: '#ffffff',
     });
   });
 
