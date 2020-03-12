@@ -75,6 +75,9 @@ export const mapColorSlugToValue = (colorDefinitions, colorSlug, colorValue = nu
  * @param customFields - list of all custom Fields
  */
 export const blocksToFormBodyFactory = (colorDefinitions, customFields = []) => {
+  if (!Array.isArray(customFields)) {
+    throw new Error('Mapper expects customFields to be an array.');
+  }
   /**
    * @param blocks
    * @param parent  - parent block of nested block
@@ -84,9 +87,6 @@ export const blocksToFormBodyFactory = (colorDefinitions, customFields = []) => 
     if (!Array.isArray(blocks)) {
       throw new Error('Mapper expects blocks to be an array.');
     }
-    if (!Array.isArray(customFields)) {
-      throw new Error('Mapper expects customFields to be an array.');
-    }
     return blocks.map((block, index) => {
       const mapped = {
         type: 'text',
@@ -95,6 +95,7 @@ export const blocksToFormBodyFactory = (colorDefinitions, customFields = []) => 
         position: (index + 1).toString(),
         params: {
           label: block.attributes.label,
+          class_name: block.attributes.className || null,
         },
       };
       if (block.attributes.mandatory) {
