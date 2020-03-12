@@ -4,6 +4,7 @@ namespace MailPoet\Test\Form\Block;
 
 use MailPoet\Form\Block\BlockRendererHelper;
 use MailPoet\Form\Block\Text;
+use MailPoet\Form\BlockWrapperRenderer;
 use MailPoet\Test\Form\HtmlParser;
 use PHPUnit\Framework\MockObject\MockObject;
 
@@ -15,6 +16,9 @@ class TextTest extends \MailPoetUnitTest {
 
   /** @var MockObject & BlockRendererHelper */
   private $rendererHelperMock;
+
+  /** @var MockObject & BlockWrapperRenderer */
+  private $wrapperMock;
 
   /** @var HtmlParser */
   private $htmlParser;
@@ -36,7 +40,9 @@ class TextTest extends \MailPoetUnitTest {
   public function _before() {
     parent::_before();
     $this->rendererHelperMock = $this->createMock(BlockRendererHelper::class);
-    $this->text = new Text($this->rendererHelperMock);
+    $this->wrapperMock = $this->createMock(BlockWrapperRenderer::class);
+    $this->wrapperMock->method('render')->will($this->returnArgument(1));
+    $this->text = new Text($this->rendererHelperMock, $this->wrapperMock);
     $this->htmlParser = new HtmlParser();
   }
 

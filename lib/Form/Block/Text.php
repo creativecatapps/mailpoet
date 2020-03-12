@@ -2,13 +2,19 @@
 
 namespace MailPoet\Form\Block;
 
+use MailPoet\Form\BlockWrapperRenderer;
+
 class Text {
 
   /** @var BlockRendererHelper */
   private $rendererHelper;
 
-  public function __construct(BlockRendererHelper $rendererHelper) {
+  /** @var BlockWrapperRenderer */
+  private $wrapper;
+
+  public function __construct(BlockRendererHelper $rendererHelper, BlockWrapperRenderer $wrapper) {
     $this->rendererHelper = $rendererHelper;
+    $this->wrapper = $wrapper;
   }
 
   public function render(array $block, array $formSettings): string {
@@ -22,7 +28,7 @@ class Text {
       $automationId = 'data-automation-id="form_' . $block['id'] . '" ';
     }
 
-    $html = '<div class="mailpoet_paragraph">';
+    $html = '';
 
     $html .= $this->rendererHelper->renderLabel($block, $formSettings);
 
@@ -44,8 +50,6 @@ class Text {
 
     $html .= '/>';
 
-    $html .= '</div>';
-
-    return $html;
+    return $this->wrapper->render($block, $html);
   }
 }

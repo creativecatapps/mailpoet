@@ -2,18 +2,22 @@
 
 namespace MailPoet\Form\Block;
 
+use MailPoet\Form\BlockWrapperRenderer;
+
 class Textarea {
   /** @var BlockRendererHelper */
   private $rendererHelper;
 
-  public function __construct(BlockRendererHelper $rendererHelper) {
+  /** @var BlockWrapperRenderer */
+  private $wrapper;
+
+  public function __construct(BlockRendererHelper $rendererHelper, BlockWrapperRenderer $wrapper) {
     $this->rendererHelper = $rendererHelper;
+    $this->wrapper = $wrapper;
   }
 
   public function render(array $block, array $formSettings): string {
     $html = '';
-
-    $html .= '<div class="mailpoet_paragraph">';
 
     $html .= $this->rendererHelper->renderLabel($block, $formSettings);
 
@@ -31,8 +35,6 @@ class Textarea {
 
     $html .= '>' . $this->rendererHelper->getFieldValue($block) . '</textarea>';
 
-    $html .= '</div>';
-
-    return $html;
+    return $this->wrapper->render($block, $html);
   }
 }
