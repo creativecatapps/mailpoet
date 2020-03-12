@@ -88,7 +88,7 @@ class BlocksRenderer {
         break;
 
       case 'divider':
-        $html .= $this->divider->render();
+        $html .= $this->divider->render($block);
         break;
 
       case 'checkbox':
