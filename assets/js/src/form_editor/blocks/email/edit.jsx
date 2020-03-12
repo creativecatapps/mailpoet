@@ -45,7 +45,7 @@ const EmailEdit = ({ attributes, setAttributes }) => {
   );
 
   return (
-    <ParagraphEdit>
+    <ParagraphEdit className={attributes.className}>
       {inspectorControls}
       {!attributes.labelWithinInput ? (
         <label className="mailpoet_text_label" data-automation-id="editor_email_label" htmlFor="email">
@@ -61,6 +61,7 @@ EmailEdit.propTypes = {
   attributes: PropTypes.shape({
     label: PropTypes.string.isRequired,
     labelWithinInput: PropTypes.bool.isRequired,
+    className: PropTypes.string,
   }).isRequired,
   setAttributes: PropTypes.func.isRequired,
 };

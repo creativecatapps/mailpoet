@@ -92,7 +92,7 @@ const CustomTextEdit = ({ attributes, setAttributes, clientId }) => {
   );
 
   return (
-    <ParagraphEdit>
+    <ParagraphEdit className={attributes.className}>
       {inspectorControls}
       {!attributes.labelWithinInput ? (
         <label className="mailpoet_text_label" data-automation-id="editor_custom_text_label" htmlFor={clientId}>
@@ -111,6 +111,7 @@ CustomTextEdit.propTypes = {
     labelWithinInput: PropTypes.bool.isRequired,
     mandatory: PropTypes.bool.isRequired,
     customFieldId: PropTypes.number.isRequired,
+    className: PropTypes.string,
   }).isRequired,
   setAttributes: PropTypes.func.isRequired,
   clientId: PropTypes.string.isRequired,

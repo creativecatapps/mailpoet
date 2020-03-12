@@ -115,7 +115,7 @@ const CustomTextAreaEdit = ({ attributes, setAttributes, clientId }) => {
   );
 
   return (
-    <ParagraphEdit>
+    <ParagraphEdit className={attributes.className}>
       {inspectorControls}
       {attributes.labelWithinInput ? (getTextArea(formatLabel(attributes))
       ) : (
@@ -138,6 +138,7 @@ CustomTextAreaEdit.propTypes = {
     labelWithinInput: PropTypes.bool.isRequired,
     mandatory: PropTypes.bool.isRequired,
     lines: PropTypes.string,
+    className: PropTypes.string,
   }).isRequired,
   setAttributes: PropTypes.func.isRequired,
   clientId: PropTypes.string.isRequired,

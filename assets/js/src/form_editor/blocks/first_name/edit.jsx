@@ -51,7 +51,7 @@ const FirstNameEdit = ({ attributes, setAttributes }) => {
   );
 
   return (
-    <ParagraphEdit>
+    <ParagraphEdit className={attributes.className}>
       {inspectorControls}
       {!attributes.labelWithinInput ? (
         <label className="mailpoet_text_label" data-automation-id="editor_first_name_label" htmlFor="first_name">
@@ -68,6 +68,7 @@ FirstNameEdit.propTypes = {
     label: PropTypes.string.isRequired,
     labelWithinInput: PropTypes.bool.isRequired,
     mandatory: PropTypes.bool.isRequired,
+    className: PropTypes.string,
   }).isRequired,
   setAttributes: PropTypes.func.isRequired,
 };
