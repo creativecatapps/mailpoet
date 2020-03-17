@@ -37,6 +37,12 @@ export type Settings = {
     enabled: '' | '1'
     address: string
   }
+  signup_confirmation: {
+    enabled: '' | '1'
+    subject: string
+    body: string
+  }
+
   // ...
 }
 
