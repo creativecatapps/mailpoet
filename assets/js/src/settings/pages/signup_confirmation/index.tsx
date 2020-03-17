@@ -10,6 +10,7 @@ export default function SignupConfirmation() {
       <EnableSignupConfirmation />
       <EmailSubject />
       <EmailContent />
+      <ConfirmationPage />
     </div>
   );
 }
