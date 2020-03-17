@@ -1,8 +1,9 @@
 import React from 'react';
+import { SaveButton } from 'settings/components';
 import EnableSignupConfirmation from './enable_signup_confirmation';
-import EmailSubject from './EmailSubject';
-import EmailContent from './EmailContent';
-import ConfirmationPage from './ConfirmationPage';
+import EmailSubject from './email_subject';
+import EmailContent from './email_content';
+import ConfirmationPage from './confirmation_page';
 
 export default function SignupConfirmation() {
   return (
@@ -11,6 +12,7 @@ export default function SignupConfirmation() {
       <EmailSubject />
       <EmailContent />
       <ConfirmationPage />
+      <SaveButton />
     </div>
   );
 }
